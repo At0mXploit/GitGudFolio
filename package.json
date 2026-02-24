@@ -1,10 +1,16 @@
 {
-  "name": "gitfolio",
+  "name": "gitgudfolio",
   "version": "0.1.5",
-  "description": "a portfolio website for everyone to showcase their work",
+  "description": "A personal portfolio + blog for every GitHub user — but better.",
   "main": "build.js",
-  "bin": "bin/gitfolio.js",
+  "bin": {
+    "gitgudfolio": "bin/gitfolio.js"
+  },
   "scripts": {
+    "ui": "OUT_DIR='./dist' node bin/gitfolio.js ui",
+    "build": "OUT_DIR='./dist' node bin/gitfolio.js build",
+    "update": "OUT_DIR='./dist' node bin/gitfolio.js update",
+    "serve": "OUT_DIR='./dist' node bin/gitfolio.js run",
     "cli": "OUT_DIR='./dist' node bin/gitfolio.js",
     "clean": "rm -rf ./dist/*",
     "prettier": "prettier --write \"./**/*.{js,jsx,json,html,css,md}\"",
@@ -24,7 +30,7 @@
     "portfolio website",
     "blog website",
     "blog",
-    "gitfolio",
+    "gitgudfolio",
     "git"
   ],
   "repository": {

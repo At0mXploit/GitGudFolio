@@ -12,8 +12,12 @@ GitGudFolio generates a portfolio website from your GitHub profile and gives you
 
 ### Install
 
+Clone the repo and install dependencies locally — no global npm install needed.
+
 ```sh
-npm i gitfolio -g
+git clone https://github.com/At0mXploit/GitGudFolio.git
+cd GitGudFolio
+npm install
 ```
 
 ### Build
@@ -21,7 +25,7 @@ npm i gitfolio -g
 Using the UI (recommended):
 
 ```sh
-$ gitfolio ui
+npm run ui
 ```
 
 Then open `http://localhost:3000` in your browser.
@@ -31,15 +35,17 @@ Then open `http://localhost:3000` in your browser.
 Or via CLI:
 
 ```sh
-gitfolio build <username>
+node bin/gitfolio.js build <username>
 ```
 
-`<username>` is your GitHub username. Outputs to the `/dist` folder.
+`<username>` is your GitHub username. Outputs to the `./dist` folder.
 
 To run the built site locally:
 
 ```sh
-gitfolio run -p [port]
+npm run serve
+# or with a custom port:
+node bin/gitfolio.js run -p [port]
 ```
 
 ---
@@ -49,14 +55,14 @@ gitfolio run -p [port]
 ### Themes
 
 ```sh
-$ gitfolio build <username> --theme dark
-$ gitfolio build <username> --theme light
+$ node bin/gitfolio.js build <username> --theme dark
+$ node bin/gitfolio.js build <username> --theme light
 ```
 
 ### Background Image
 
 ```sh
-$ gitfolio build <username> --background https://images.unsplash.com/photo-1557277770-baf0ca74f908?w=1634
+$ node bin/gitfolio.js build <username> --background https://images.unsplash.com/photo-1557277770-baf0ca74f908?w=1634
 ```
 
 You can also edit `index.css` directly for custom styles.
@@ -64,7 +70,7 @@ You can also edit `index.css` directly for custom styles.
 ### Include Forks
 
 ```sh
-$ gitfolio build <username> -f
+$ node bin/gitfolio.js build <username> -f
 ```
 
 ### Sort & Order Repos
@@ -72,7 +78,7 @@ $ gitfolio build <username> -f
 `[sortBy]` can be `star`, `created`, `updated`, `pushed`, `full_name`. Default: `created`
 
 ```sh
-$ gitfolio build <username> --sort star --order desc
+$ node bin/gitfolio.js build <username> --sort star --order desc
 ```
 
 ### Filter Repos
@@ -80,19 +86,19 @@ $ gitfolio build <username> --sort star --order desc
 **Top N repos** (applied after sorting):
 
 ```sh
-$ gitfolio build <username> --sort star --order desc --limit 10
+$ node bin/gitfolio.js build <username> --sort star --order desc --limit 10
 ```
 
 **Specific repos by name** (comma-separated, shown in the order you list them):
 
 ```sh
-$ gitfolio build <username> --repos "my-project,awesome-lib,side-hustle"
+$ node bin/gitfolio.js build <username> --repos "my-project,awesome-lib,side-hustle"
 ```
 
 Combine both — `--repos` picks repos, `--limit` caps the count:
 
 ```sh
-$ gitfolio build <username> --repos "my-project,awesome-lib,side-hustle,other" --limit 3
+$ node bin/gitfolio.js build <username> --repos "my-project,awesome-lib,side-hustle,other" --limit 3
 ```
 
 Both options are also available in the UI under **Repo Filter**.
@@ -102,7 +108,7 @@ Both options are also available in the UI under **Repo Filter**.
 Built-in socials (Twitter, LinkedIn, Medium, Dribbble):
 
 ```sh
-gitfolio build <username> --twitter <handle> --linkedin <handle> --medium <handle> --dribbble <handle>
+node bin/gitfolio.js build <username> --twitter <handle> --linkedin <handle> --medium <handle> --dribbble <handle>
 ```
 
 ### Custom Social Links
@@ -110,7 +116,7 @@ gitfolio build <username> --twitter <handle> --linkedin <handle> --medium <handl
 Add any platform using `--social label:url` (repeatable). Known labels auto-resolve to brand icons; everything else gets a generic link icon.
 
 ```sh
-gitfolio build <username> \
+node bin/gitfolio.js build <username> \
   --social "discord:https://discord.gg/yourserver" \
   --social "hackthebox:https://app.hackthebox.com/users/yourprofile" \
   --social "ctftime:https://ctftime.org/user/12345"
@@ -126,10 +132,10 @@ Add friends with their websites — they appear as a **Friends.** card grid on y
 
 ```sh
 # name|url
-gitfolio build <username> --friend "Alice|https://alice.dev"
+node bin/gitfolio.js build <username> --friend "Alice|https://alice.dev"
 
 # name|url|optional tagline
-gitfolio build <username> \
+node bin/gitfolio.js build <username> \
   --friend "Alice|https://alice.dev|Security researcher" \
   --friend "Bob|https://bob.io|Full-stack dev"
 ```
@@ -147,7 +153,7 @@ Your site will be live at `username.github.io`.
 ### Updating
 
 ```sh
-$ gitfolio update
+$ npm run update
 ```
 
 Or use the **Update** button in the UI. This refreshes your GitHub profile info and repo list.

@@ -6,6 +6,14 @@
 
 GitGudFolio generates a portfolio website from your GitHub profile and gives you a full-featured blog editor with Markdown, LaTeX, syntax highlighting, Giscus comments, custom social links, a friends section, and flexible repo filtering.
 
+Checkout the demo [here](https://at0mxploit.github.io/)
+
+<img width="1340" height="607" alt="2026-02-24_21-07" src="https://github.com/user-attachments/assets/dbf27676-bd0f-4f15-8718-4c348188f271" />
+
+<img width="1345" height="557" alt="2026-02-24_21-26" src="https://github.com/user-attachments/assets/f4a58932-61c7-4505-b205-b95994871c31" />
+
+<img width="1350" height="609" alt="2026-02-24_21-27" src="https://github.com/user-attachments/assets/cec69f65-a909-462e-803f-d63b18f3dedf" />
+
 ---
 
 # Getting Started

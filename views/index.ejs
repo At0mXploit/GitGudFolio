@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Gitfolio UI</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/zeva-ui/zeva/dist/css/zeva.min.css"
+    />
+  </head>
+  <body class="body-light">
+    <header>
+      <b>gitfolio</b>
+      <a href="/blog" style="float: right">New Blog </a>
+      <a href="/update" style="float: right">Update</a>
+      <a href="/" style="float: right">Home</a>
+    </header>
+    <form method="post" action="build">
+      <h3>Build or Edit Portfolio</h3>
+      <input
+        type="text"
+        class="input h-weight-bold"
+        placeholder="username"
+        id="username"
+        name="username"
+        required
+      /><br />
+      <input
+        type="text"
+        class="input h-weight-bold"
+        placeholder="background"
+        name="background"
+        id="background"
+      />
+      <h3>Sort By :</h3>
+      <label class="label"
+        >Star
+        <input type="radio" name="sort" value="star" />
+        <span class="radio"></span>
+      </label>
+
+      <label class="label"
+        >Created
+        <input type="radio" name="sort" value="created" checked />
+        <span class="radio"></span>
+      </label>
+
+      <label class="label"
+        >Updated
+        <input type="radio" name="sort" value="updated" />
+        <span class="radio"></span>
+      </label>
+
+      <label class="label"
+        >Pushed
+        <input type="radio" name="sort" value="pushed" />
+        <span class="radio"></span>
+      </label>
+
+      <label class="label"
+        >Full Name
+        <input type="radio" name="sort" value="full_name" />
+        <span class="radio"></span>
+      </label>
+
+      <h3>Order By :</h3>
+      <label class="label"
+        >Asc
+        <input type="radio" name="order" value="asc" checked />
+        <span class="radio"></span>
+      </label>
+      <label class="label"
+        >Desc
+        <input type="radio" name="order" value="desc" />
+        <span class="radio"></span>
+      </label>
+      <br /><br />
+      <label class="label"
+        >Use Dark Theme
+        <input type="checkbox" id="theme" name="theme" />
+        <span class="checkbox"></span>
+      </label>
+      <label class="label"
+        >Include Forks
+        <input type="checkbox" id="fork" name="fork" value="true" />
+        <span class="checkbox"></span>
+      </label>
+      <br />
+      <h3>Repo Filter :</h3>
+      <input
+        type="number"
+        class="input h-weight-bold"
+        placeholder="Top N repos (e.g. 10, leave blank for all)"
+        name="limit"
+        id="limit"
+        min="1"
+      /><br />
+      <input
+        type="text"
+        class="input h-weight-bold"
+        placeholder="Specific repos: repo-one, repo-two (leave blank for all)"
+        name="repos"
+        id="repos"
+      /><br /><br />
+      <h3>Custom Socials :</h3>
+      <p style="font-size:13px;margin:0 0 8px;">
+        Add any social/platform link. Use a known label for an icon (discord, github, youtube, instagram, reddit, telegram, twitch, etc.) — unknown labels get a generic link icon.
+      </p>
+      <div id="custom_socials_container"></div>
+      <button
+        type="button"
+        class="button h-weight-bold h-border-pill -size-small"
+        onclick="addSocialRow()"
+      >+ Add Social</button>
+
+      <h3>Friends :</h3>
+      <p style="font-size:13px;margin:0 0 8px;">
+        Add friends with their websites — they'll appear in a "Friends." section on your portfolio.
+      </p>
+      <div id="friends_container"></div>
+      <button
+        type="button"
+        class="button h-weight-bold h-border-pill -size-small"
+        onclick="addFriendRow()"
+      >+ Add Friend</button>
+      <br /><br />
+
+      <label class="label"
+        >Include Socials
+        <input type="checkbox" id="socials" name="socials" />
+        <span class="checkbox"></span>
+      </label>
+      <div style="display: none" id="input_for_socials">
+        <input
+          type="text"
+          class="input h-weight-bold"
+          placeholder="twitter username"
+          id="twitter"
+          name="twitter"
+        /><br />
+        <input
+          type="text"
+          class="input h-weight-bold"
+          placeholder="medium username"
+          id="medium"
+          name="medium"
+        /><br />
+        <input
+          type="text"
+          class="input h-weight-bold"
+          placeholder="dribbble username"
+          id="dribbble"
+          name="dribbble"
+        /><br />
+        <input
+          type="text"
+          class="input h-weight-bold"
+          placeholder="linkedin username"
+          id="linkedin"
+          name="linkedin"
+        />
+      </div>
+      <h3>Giscus Comments :</h3>
+      <p style="font-size:13px;margin:0 0 8px;">
+        Adds GitHub Discussions-based comments to every blog post.
+        Get your Repo ID and Category ID at
+        <a href="https://giscus.app" target="_blank">giscus.app</a>.
+      </p>
+      <label class="label">
+        Enable comments by default
+        <input type="checkbox" id="giscus_enabled" name="giscus_enabled" value="true" />
+        <span class="checkbox"></span>
+      </label>
+      <div id="giscus_config_fields" style="display:none;">
+        <input
+          type="text"
+          class="input h-weight-bold"
+          name="giscus_repo"
+          placeholder="username/repo"
+        /><br />
+        <input
+          type="text"
+          class="input h-weight-bold"
+          name="giscus_repo_id"
+          placeholder="Repo ID (e.g. R_kgDO...)"
+        /><br />
+        <input
+          type="text"
+          class="input h-weight-bold"
+          name="giscus_category"
+          placeholder="Discussion category (e.g. Announcements)"
+        /><br />
+        <input
+          type="text"
+          class="input h-weight-bold"
+          name="giscus_category_id"
+          placeholder="Category ID (e.g. DIC_kwDO...)"
+        /><br />
+        <h4 style="margin:12px 0 4px;">Theme :</h4>
+        <label class="label">
+          Auto (follows system)
+          <input type="radio" name="giscus_theme" value="preferred_color_scheme" checked />
+          <span class="radio"></span>
+        </label>
+        <label class="label">
+          Light
+          <input type="radio" name="giscus_theme" value="light" />
+          <span class="radio"></span>
+        </label>
+        <label class="label">
+          Dark
+          <input type="radio" name="giscus_theme" value="dark" />
+          <span class="radio"></span>
+        </label>
+      </div>
+      <br /><br />
+      <button type="submit" class="button" id="build">Build</button>
+    </form>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/gh/zeva-ui/zeva/dist/js/index.min.js"
+    ></script>
+    <script type="text/javascript">
+      document.querySelector("#socials").addEventListener("change", event => {
+        if (event.target.checked) {
+          document.querySelector("#input_for_socials").style.display = "block";
+        } else {
+          document.querySelector("#input_for_socials").style.display = "none";
+        }
+      });
+
+      function addSocialRow() {
+        var row = document.createElement("div");
+        row.style.cssText = "display:flex;gap:8px;align-items:center;margin-bottom:8px;";
+        row.innerHTML =
+          '<input type="text" class="input h-weight-bold" name="social_label" placeholder="label (e.g. discord, hackthebox)" style="width:160px;" />' +
+          '<input type="text" class="input h-weight-bold" name="social_url" placeholder="https://..." style="flex:1;" />' +
+          '<button type="button" style="background:none;border:none;font-size:18px;cursor:pointer;color:#888;" onclick="this.parentNode.remove()">×</button>';
+        document.getElementById("custom_socials_container").appendChild(row);
+      }
+
+      document.querySelector("#giscus_enabled").addEventListener("change", function(e) {
+        document.getElementById("giscus_config_fields").style.display =
+          e.target.checked ? "block" : "none";
+      });
+
+      function addFriendRow() {
+        var row = document.createElement("div");
+        row.style.cssText = "display:flex;gap:8px;align-items:center;margin-bottom:8px;";
+        row.innerHTML =
+          '<input type="text" class="input h-weight-bold" name="friend_name" placeholder="name" style="width:140px;" />' +
+          '<input type="text" class="input h-weight-bold" name="friend_url" placeholder="https://..." style="flex:1;" />' +
+          '<input type="text" class="input h-weight-bold" name="friend_bio" placeholder="tagline (optional)" style="width:180px;" />' +
+          '<button type="button" style="background:none;border:none;font-size:18px;cursor:pointer;color:#888;" onclick="this.parentNode.remove()">×</button>';
+        document.getElementById("friends_container").appendChild(row);
+      }
+    </script>
+  </body>
+</html>

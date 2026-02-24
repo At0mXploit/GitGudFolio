@@ -1,0 +1,55 @@
+{
+  "name": "gitfolio",
+  "version": "0.1.5",
+  "description": "a portfolio website for everyone to showcase their work",
+  "main": "build.js",
+  "bin": "bin/gitfolio.js",
+  "scripts": {
+    "cli": "OUT_DIR='./dist' node bin/gitfolio.js",
+    "clean": "rm -rf ./dist/*",
+    "prettier": "prettier --write \"./**/*.{js,jsx,json,html,css,md}\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "@At0mXploit",
+    "email": "",
+    "url": "https://github.com/At0mXploit"
+  },
+  "bugs": "https://github.com/At0mXploit/GitGudFolio/issues",
+  "homepage": "https://github.com/At0mXploit/GitGudFolio",
+  "keywords": [
+    "personal-website",
+    "github",
+    "portfolio",
+    "portfolio website",
+    "blog website",
+    "blog",
+    "gitfolio",
+    "git"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/At0mXploit/GitGudFolio"
+  },
+  "license": "GPL-3.0",
+  "dependencies": {
+    "@traptitech/markdown-it-katex": "^3.6.0",
+    "bluebird": "^3.5.4",
+    "body-parser": "^1.19.0",
+    "commander": "^2.20.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.0",
+    "github-emoji": "^1.1.1",
+    "got": "^9.6.0",
+    "handlebars": "^4.1.2",
+    "jsdom": "^15.1.0",
+    "markdown-it": "^14.1.1",
+    "markdown-it-deflist": "^3.0.0",
+    "markdown-it-emoji": "^3.0.0",
+    "markdown-it-footnote": "^4.0.0",
+    "markdown-it-multimd-table": "^4.1.2",
+    "markdown-it-task-lists": "^2.1.1",
+    "ncp": "^2.0.0",
+    "prettier": "^1.18.2"
+  }
+}

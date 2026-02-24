@@ -21,7 +21,7 @@ app.use(
 const port = 3000;
 const jsdom = require("jsdom").JSDOM,
   options = {
-    resources: "usable"
+    resources: "none"
   };
 global.DOMParser = new jsdom().window.DOMParser;
 const { getBlog, getConfig, outDir } = require("./utils");

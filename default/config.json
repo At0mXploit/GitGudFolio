@@ -6,6 +6,8 @@
     "sort": null,
     "order": null,
     "includeFork": null,
-    "theme": "light.css"
+    "theme": "light.css",
+    "scrambleEnabled": null,
+    "scramblePhrases": null
   }
 ]

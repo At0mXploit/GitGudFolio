@@ -276,6 +276,9 @@ function uiCommand() {
       }))
       .filter(f => f.name && f.url);
 
+    const scramblePhraseInputs = toArray(req.body.scramble_phrase);
+    const scramblePhrases = scramblePhraseInputs.map(p => p.trim()).filter(Boolean);
+
     const opts = {
       sort: sort,
       order: order,
@@ -289,6 +292,8 @@ function uiCommand() {
       repos: repos && repos.length ? repos : null,
       customSocials,
       friends,
+      scrambleEnabled: req.body.scramble_enabled === "true",
+      scramblePhrases,
       giscusEnabled: req.body.giscus_enabled === "true",
       giscusRepo: req.body.giscus_repo || null,
       giscusRepoId: req.body.giscus_repo_id || null,

@@ -173,6 +173,24 @@
           name="linkedin"
         />
       </div>
+      <h3>Loading Screen :</h3>
+      <p style="font-size:13px;margin:0 0 8px;">
+        Replace the spinner with a text scramble animation. Add phrases that cycle through before the site appears.
+      </p>
+      <label class="label">
+        Enable scramble animation
+        <input type="checkbox" id="scramble_enabled" name="scramble_enabled" value="true" />
+        <span class="checkbox"></span>
+      </label>
+      <div id="scramble_phrases_container" style="display:none;margin-top:8px;">
+        <div id="scramble_phrases_list"></div>
+        <button
+          type="button"
+          class="button h-weight-bold h-border-pill -size-small"
+          onclick="addScramblePhrase()"
+        >+ Add Phrase</button>
+      </div>
+
       <h3>Giscus Comments :</h3>
       <p style="font-size:13px;margin:0 0 8px;">
         Adds GitHub Discussions-based comments to every blog post.
@@ -256,6 +274,20 @@
         document.getElementById("giscus_config_fields").style.display =
           e.target.checked ? "block" : "none";
       });
+
+      document.querySelector("#scramble_enabled").addEventListener("change", function(e) {
+        document.getElementById("scramble_phrases_container").style.display =
+          e.target.checked ? "block" : "none";
+      });
+
+      function addScramblePhrase() {
+        var row = document.createElement("div");
+        row.style.cssText = "display:flex;gap:8px;align-items:center;margin-bottom:8px;";
+        row.innerHTML =
+          '<input type="text" class="input h-weight-bold" name="scramble_phrase" placeholder="phrase (e.g. At0m, Loading...)" style="flex:1;" />' +
+          '<button type="button" style="background:none;border:none;font-size:18px;cursor:pointer;color:#888;" onclick="this.parentNode.remove()">×</button>';
+        document.getElementById("scramble_phrases_list").appendChild(row);
+      }
 
       function addFriendRow() {
         var row = document.createElement("div");

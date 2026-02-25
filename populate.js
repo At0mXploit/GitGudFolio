@@ -80,7 +80,9 @@ module.exports.updateHTML = (username, opts) => {
     medium,
     dribbble,
     customSocials = [],
-    friends = []
+    friends = [],
+    scrambleEnabled = false,
+    scramblePhrases = []
   } = opts;
   //add data to assets/index.html
   jsdom
@@ -220,6 +222,14 @@ module.exports.updateHTML = (username, opts) => {
           data[0].username = user.login;
           data[0].name = user.name;
           data[0].userimg = user.avatar_url;
+
+          const scrambleCfgEl = document.getElementById("scramble-config");
+          if (scrambleCfgEl) {
+            scrambleCfgEl.textContent = JSON.stringify({
+              enabled: scrambleEnabled || false,
+              phrases: scramblePhrases || []
+            });
+          }
 
           await fs.writeFile(
             `${outDir}/config.json`,

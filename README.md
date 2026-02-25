@@ -134,6 +134,25 @@ Labels with automatic icons (Font Awesome 5): `discord`, `github`, `gitlab`, `tw
 
 In the UI, use the **Custom Socials** section to add rows dynamically.
 
+### Loading Screen Animation
+
+By default the site shows a spinner while loading. You can replace it with a **text scramble** animation — phrases that cycle through with a glitch/scramble effect before the portfolio appears.
+
+```sh
+# Enable with one phrase
+node bin/gitfolio.js build <username> --scramble --scramble-phrase "At0m"
+
+# Multiple phrases (cycle through in order, then reveal site)
+node bin/gitfolio.js build <username> --scramble \
+  --scramble-phrase "At0m" \
+  --scramble-phrase "Lets Pwn" \
+  --scramble-phrase "Loading..."
+```
+
+In the UI, scroll to **Loading Screen**, tick **Enable scramble animation**, and add phrases with **+ Add Phrase**.
+
+Phrases are displayed one at a time with a scramble/glitch effect. After the last phrase resolves, the loading screen fades out and the portfolio appears.
+
 ### Friends Section
 
 Add friends with their websites — they appear as a **Friends.** card grid on your portfolio.

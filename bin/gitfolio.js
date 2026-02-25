@@ -33,6 +33,8 @@ program
   .option("-r, --repos [names]", "comma-separated list of specific repo names to include")
   .option("--social [entry]", "add a custom social link as label:url (repeatable)", collect, [])
   .option("--friend [entry]", "add a friend as name|url|optional-bio (repeatable)", collect, [])
+  .option("--scramble", "enable text scramble loading screen animation")
+  .option("--scramble-phrase [text]", "add a phrase for the scramble animation (repeatable)", collect, [])
   .action(buildCommand);
 
 program

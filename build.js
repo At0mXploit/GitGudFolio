@@ -97,7 +97,9 @@ async function buildCommand(username, program) {
         url: (parts[1] || "").trim(),
         bio: (parts[2] || "").trim() || null
       };
-    }).filter(f => f.name && f.url)
+    }).filter(f => f.name && f.url),
+    scrambleEnabled: program.scramble || false,
+    scramblePhrases: (program.scramblePhrase || []).map(p => p.trim()).filter(Boolean)
   };
 
   await populateConfig(opts);

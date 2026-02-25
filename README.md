@@ -290,3 +290,4 @@ Each blog post adds an entry to `blog.json`:
 ---
 
 > **GitGudFolio** is a fork of [Gitfolio](https://github.com/imfunniee/gitfolio) by [@imfunniee](https://github.com/imfunniee). Original concept and base code belong to them. This fork adds Markdown, LaTeX, syntax highlighting, Giscus comments, custom social links, friends section, repo filtering, and various bug fixes on top of the original.
+

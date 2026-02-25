@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 const express = require("express");
 const { updateHTML } = require("./populate");
 const { populateCSS, populateConfig } = require("./build");
@@ -331,7 +332,43 @@ function uiCommand() {
         reactions: cfg.giscusReactions !== false,
         inputPosition: cfg.giscusInputPosition || "bottom"
       };
-      res.render("blog.ejs", { profile: config, giscus });
+      getBlog().then(function(blogs) {
+        res.render("blog.ejs", { profile: config, giscus, blogs });
+      }).catch(function(err) {
+        console.error("Failed to read blog.json:", err.message);
+        res.render("blog.ejs", { profile: config, giscus, blogs: [] });
+      });
+    });
+  });
+  app.post("/deleteBlog", function(req, res) {
+    const folder = req.body.folder;
+    if (!folder || !/^[a-zA-Z0-9-]+$/.test(folder)) {
+      return res.send('Invalid blog folder name<br><a href="/blog">Go Back</a>');
+    }
+    const blogFolder = path.resolve(path.join(outDir, "blog", folder));
+    const blogBase = path.resolve(path.join(outDir, "blog"));
+    if (!blogFolder.startsWith(blogBase + path.sep) && blogFolder !== blogBase) {
+      return res.send('Invalid path<br><a href="/blog">Go Back</a>');
+    }
+    if (fs.existsSync(blogFolder)) {
+      fs.rmSync(blogFolder, { recursive: true, force: true });
+    }
+    getBlog().then(function(blogs) {
+      const updated = blogs.filter(b => b.url_title !== folder);
+      fs.writeFile(
+        `${outDir}/blog.json`,
+        JSON.stringify(updated, null, " "),
+        function(err) {
+          if (err) {
+            console.error("Failed to write blog.json:", err.message);
+            return res.send('Failed to update blog list<br><a href="/blog">Go Back</a>');
+          }
+          res.redirect("/blog");
+        }
+      );
+    }).catch(function(err) {
+      console.error("Failed to read blog.json:", err.message);
+      res.send('Failed to read blog list<br><a href="/blog">Go Back</a>');
     });
   });
   app.post("/createBlog", function(req, res) {

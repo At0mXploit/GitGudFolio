@@ -65,6 +65,22 @@
         </tr>
       </tbody>
     </table>
+    <% if (blogs && blogs.length > 0) { %>
+    <div id="existing-blogs">
+      <h3 style="margin-bottom: 12px;">Existing Blogs</h3>
+      <% blogs.forEach(function(blog) { %>
+      <div class="existing-blog-item">
+        <span class="existing-blog-title"><%= blog.title %></span>
+        <form method="POST" action="/deleteBlog" style="display:inline;" onsubmit="return confirm('Delete \'<%= blog.title %>\'? This cannot be undone.')">
+          <input type="hidden" name="folder" value="<%= blog.url_title %>" />
+          <button type="submit" class="button h-weight-bold h-border-pill -size-small" style="background:#e53935;color:#fff;border-color:#e53935;">
+            <i class="fas fa-trash"></i>&nbsp; Delete
+          </button>
+        </form>
+      </div>
+      <% }); %>
+    </div>
+    <% } %>
     <div id="blog-display">
       <form
         style="padding: 0px; width:100%;"

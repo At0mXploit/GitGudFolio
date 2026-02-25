@@ -21,7 +21,12 @@ async function getFileWithDefaults(file, defaultFile) {
     return JSON.parse(defaultData);
   }
   const data = await fs.readFileAsync(file);
-  return JSON.parse(data);
+  const str = data.toString().trim();
+  if (!str) {
+    const defaultData = await fs.readFileAsync(defaultFile);
+    return JSON.parse(defaultData);
+  }
+  return JSON.parse(str);
 }
 
 async function getConfig() {

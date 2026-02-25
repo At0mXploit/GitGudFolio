@@ -404,3 +404,23 @@ textarea:focus {
 #preview_pane p {
   margin: 2vh 0;
 }
+
+#existing-blogs {
+  width: 90vw;
+  margin: 2vh 5vw 0;
+  padding: 2vh 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.existing-blog-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.existing-blog-title {
+  font-size: 15px;
+  font-weight: 500;
+}

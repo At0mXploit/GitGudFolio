@@ -6,6 +6,14 @@
 
 GitGudFolio generates a portfolio website from your GitHub profile and gives you a full-featured blog editor with Markdown, LaTeX, syntax highlighting, Giscus comments, custom social links, a friends section, and flexible repo filtering.
 
+Checkout the demo [here](https://at0mxploit.github.io/)
+
+<img width="1340" height="607" alt="2026-02-24_21-07" src="https://github.com/user-attachments/assets/dbf27676-bd0f-4f15-8718-4c348188f271" />
+
+<img width="1350" height="2150" alt="site" src="https://github.com/user-attachments/assets/c1ada11f-a537-469e-aa4c-1b3ea49b5293" />
+
+<img width="1350" height="609" alt="2026-02-24_21-27" src="https://github.com/user-attachments/assets/cec69f65-a909-462e-803f-d63b18f3dedf" />
+
 ---
 
 # Getting Started
@@ -20,6 +28,20 @@ cd GitGudFolio
 npm install
 ```
 
+If error occurs:
+
+```sh
+rm -rf node_modules package-lock.json
+npm cache clean --force
+```
+
+Then:
+
+```
+npm install \
+  html-encoding-sniffer@2.0.1 \
+  jsdom@20.0.3
+```
 ### Build
 
 Using the UI (recommended):
@@ -49,6 +71,23 @@ node bin/gitfolio.js run -p [port]
 ```
 
 ---
+# Test (All in One Command)
+
+```sh
+node bin/gitfolio.js build At0mXploit \
+  --theme dark \
+  --sort pushed --order desc --limit 10 \
+  --scramble \
+  --scramble-phrase "At0m" \
+  --scramble-phrase "Lets Pwn" \
+  --scramble-phrase "Loading..." \
+  --twitter At0mXploit \
+  --linkedin Rijan-Poudel \
+  --social "discord:https://discord.gg/@At0mXploit" \
+  --social "hackthebox:https://app.hackthebox.com/users/2109485" \
+  --social "ctftime:https://ctftime.org/user/205608" \
+  --friend "0x0w1z|https://github.com/0x0w1z|Cursed Born Yesterday."
+```
 
 # Customization
 
@@ -125,6 +164,25 @@ node bin/gitfolio.js build <username> \
 Labels with automatic icons (Font Awesome 5): `discord`, `github`, `gitlab`, `twitch`, `youtube`, `instagram`, `reddit`, `telegram`, `keybase`, `stackoverflow`, `dev`, `npm`, `codepen`, `pinterest`, `spotify`, `facebook`, `mastodon`, `hackerrank`, `patreon`. Anything else uses `fa-link`.
 
 In the UI, use the **Custom Socials** section to add rows dynamically.
+
+### Loading Screen Animation
+
+By default the site shows a spinner while loading. You can replace it with a **text scramble** animation — phrases that cycle through with a glitch/scramble effect before the portfolio appears.
+
+```sh
+# Enable with one phrase
+node bin/gitfolio.js build <username> --scramble --scramble-phrase "At0m"
+
+# Multiple phrases (cycle through in order, then reveal site)
+node bin/gitfolio.js build <username> --scramble \
+  --scramble-phrase "At0m" \
+  --scramble-phrase "Lets Pwn" \
+  --scramble-phrase "Loading..."
+```
+
+In the UI, scroll to **Loading Screen**, tick **Enable scramble animation**, and add phrases with **+ Add Phrase**.
+
+Phrases are displayed one at a time with a scramble/glitch effect. After the last phrase resolves, the loading screen fades out and the portfolio appears.
 
 ### Friends Section
 
@@ -262,4 +320,4 @@ Each blog post adds an entry to `blog.json`:
 
 ---
 
-> **GitGudFolio** is a fork of [Gitfolio](https://github.com/imfunniee/gitfolio) by [@imfunniee](https://github.com/imfunniee). Original concept and base code belong to them. This fork adds Markdown, LaTeX, syntax highlighting, Giscus comments, custom social links, friends section, repo filtering, and various bug fixes on top of the original.
+> **GitGudFolio** is a fork of [Gitfolio](https://github.com/imfunniee/gitfolio) by [@imfunniee](https://github.com/imfunniee). Original concept and base code belong to them. This fork adds Markdown, LaTeX, syntax highlighting, Giscus comments, custom social links, friends section, repo filtering, and various bug fixes on top of the 

@@ -6,14 +6,6 @@
 
 GitGudFolio generates a portfolio website from your GitHub profile and gives you a full-featured blog editor with Markdown, LaTeX, syntax highlighting, Giscus comments, custom social links, a friends section, and flexible repo filtering.
 
-Checkout the demo [here](https://at0mxploit.github.io/)
-
-<img width="1340" height="607" alt="2026-02-24_21-07" src="https://github.com/user-attachments/assets/dbf27676-bd0f-4f15-8718-4c348188f271" />
-
-<img width="1345" height="557" alt="2026-02-24_21-26" src="https://github.com/user-attachments/assets/f4a58932-61c7-4505-b205-b95994871c31" />
-
-<img width="1350" height="609" alt="2026-02-24_21-27" src="https://github.com/user-attachments/assets/cec69f65-a909-462e-803f-d63b18f3dedf" />
-
 ---
 
 # Getting Started
@@ -133,25 +125,6 @@ node bin/gitfolio.js build <username> \
 Labels with automatic icons (Font Awesome 5): `discord`, `github`, `gitlab`, `twitch`, `youtube`, `instagram`, `reddit`, `telegram`, `keybase`, `stackoverflow`, `dev`, `npm`, `codepen`, `pinterest`, `spotify`, `facebook`, `mastodon`, `hackerrank`, `patreon`. Anything else uses `fa-link`.
 
 In the UI, use the **Custom Socials** section to add rows dynamically.
-
-### Loading Screen Animation
-
-By default the site shows a spinner while loading. You can replace it with a **text scramble** animation — phrases that cycle through with a glitch/scramble effect before the portfolio appears.
-
-```sh
-# Enable with one phrase
-node bin/gitfolio.js build <username> --scramble --scramble-phrase "At0m"
-
-# Multiple phrases (cycle through in order, then reveal site)
-node bin/gitfolio.js build <username> --scramble \
-  --scramble-phrase "At0m" \
-  --scramble-phrase "Lets Pwn" \
-  --scramble-phrase "Loading..."
-```
-
-In the UI, scroll to **Loading Screen**, tick **Enable scramble animation**, and add phrases with **+ Add Phrase**.
-
-Phrases are displayed one at a time with a scramble/glitch effect. After the last phrase resolves, the loading screen fades out and the portfolio appears.
 
 ### Friends Section
 
@@ -290,4 +263,3 @@ Each blog post adds an entry to `blog.json`:
 ---
 
 > **GitGudFolio** is a fork of [Gitfolio](https://github.com/imfunniee/gitfolio) by [@imfunniee](https://github.com/imfunniee). Original concept and base code belong to them. This fork adds Markdown, LaTeX, syntax highlighting, Giscus comments, custom social links, friends section, repo filtering, and various bug fixes on top of the original.
-
